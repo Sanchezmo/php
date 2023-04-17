@@ -26,7 +26,7 @@ include('./includes/driverdb.php');
         </div>
 
         <div class="col">
-            <?php $querynotice='SELECT * FROM Articulos';
+            <?php $querynotice='SELECT * FROM Articulos ORDER BY Id DESC LIMIT 3';
             $result=mysqli_query($conexion,$querynotice);
              while ($row = mysqli_fetch_array($result)){?>
             <div class="card"  id="<?php echo $row['Id']?>">
