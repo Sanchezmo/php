@@ -38,7 +38,7 @@ if($_SESSION['login']!="OK"){header("Location: loginadmin.php");}
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        
+
                         <th scope="col">FECHA</th>
                         <th scope="col">TITULO</th>
                         <th scope="col">CONTENIDO</th>
@@ -48,21 +48,21 @@ if($_SESSION['login']!="OK"){header("Location: loginadmin.php");}
                 </thead>
                 <tbody>
                     <tr>
-                <?php
+                        <?php
              $query = 'SELECT count(*) as cuenta FROM Articulos';
             $result_count= mysqli_query($conexion , $query);
             $array_id=mysqli_fetch_array($result_count);
             $lastid=1+$array_id['cuenta'];?>
-                        
-                        
-                        
+
+
+
                         <td><input name="FechaI" type="date" require></td>
                         <td><input name="TituloI" type="text" require placeholder="valor" size="25"></td>
-                        <td><input name="ContenidoI" type="text" require placeholder="valor"size="110"></td>
-                        
+                        <td><input name="ContenidoI" type="text" require placeholder="valor" size="110"></td>
+
                         <td><button type="submit" name="insert" require class="btn btn-warning">INSERTAR</button></td>
                         <td><input name="IdI" type="hidden" require value="<?php echo $lastid; ?>" size="1"></td>
-                        
+
                     </tr>
                 </tbody>
             </table>
@@ -70,7 +70,7 @@ if($_SESSION['login']!="OK"){header("Location: loginadmin.php");}
         <table class="table table-striped">
             <thead>
                 <tr>
-                   
+
                     <th scope="col">FECHA</th>
                     <th scope="col">TITULO</th>
                     <th scope="col">CONTENIDO</th>
@@ -85,11 +85,11 @@ if($_SESSION['login']!="OK"){header("Location: loginadmin.php");}
              while ($row = mysqli_fetch_array($result_clientes)){?>
                 <form method="post" action="noticias.php" id="<?php echo $row['Id']?>">
                     <tr>
-                        
+
                         <input name="Id" type="hidden" value="<?php echo $row['Id']?>">
                         <td><input name="Fecha" type="date" value="<?php echo $row['Fecha']?>"></td>
-                        <td><input name="Titulo" type="text" value="<?php echo $row['Titulo']?>"size="25"></td>
-                        <td><input name="Contenido" type="text" value="<?php echo $row['Contenido']?>"size="100"></td>
+                        <td><input name="Titulo" type="text" value="<?php echo $row['Titulo']?>" size="25"></td>
+                        <td><input name="Contenido" type="text" value="<?php echo $row['Contenido']?>" size="100"></td>
 
 
                         <td>
