@@ -3,7 +3,7 @@ if(isset($_POST['user'])&&isset($_POST['password'])){
     $user = $_POST['user'];
     $password = $_POST['password'];
     session_start();
-    //$_SESSION['mensaje']="Usuario o contraseña incorrecta";
+    
     try{
         $conexion=mysqli_connect(
         'localhost',
@@ -12,18 +12,22 @@ if(isset($_POST['user'])&&isset($_POST['password'])){
         'Northwind'
     );
         if(isset($conexion)) {
-        header("Location: index.php");
+            $_SESSION['login']='OK';
+        header("Location: noticias.php");
+        
         }
         
     }catch(Exception $e){
     
     $_SESSION['mensaje']='Usuario o contraseña incorrecta';
-    header("Location: login.php");
+    header("Location: loginadmin.php");
+    $_SESSION['login']='NO';
     }
 
 }else{
     $_SESSION['mensaje']='No se admiten campos vacios';
-    header("Location: login.php");
+    $_SESSION['login']='NO';
+    
     
 }
 ?>
