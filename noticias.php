@@ -34,7 +34,7 @@ if($_SESSION['login']!="OK"){header("Location: loginadmin.php");}
         <h1>Noticias</h1>
     </div>
     <div class="card">
-        <form method="post" action="noticias.php">
+        <form method="post" action="noticias.php" enctype="multipart/form-data">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -63,6 +63,9 @@ if($_SESSION['login']!="OK"){header("Location: loginadmin.php");}
                         <td><button type="submit" name="insert" require class="btn btn-warning">INSERTAR</button></td>
                         <td><input name="IdI" type="hidden" require value="<?php echo $lastid; ?>" size="1"></td>
 
+                    </tr>
+                    <tr>
+                        <div class="mb-2"></div>
                     </tr>
                 </tbody>
             </table>
