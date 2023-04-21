@@ -3,9 +3,45 @@
 session_start(); 
 include('./includes/driverdb.php');
 
+function desglosarFecha($fecha){
+    $fecha=explode('-',$fecha);
+    nombraMes($fecha);
+    return ($fecha[2]." ".nombraMes($fecha[1])." ".$fecha[0]);
+}
+function nombraMes($mes){
+    if($mes==1){
+        return "Enero";
+    }else if($mes==2){
+        return "Febrero";
+    }else if($mes==3){
+        return "Marzo";
+    }else if($mes==4){
+        return "Abril";
+    }else if($mes==5){
+        return "Mayo";
+    }else if($mes==6){
+        return "Junio";
+    }else if($mes==7){
+        return "Julio";
+    }else if($mes==8){
+        return "Agosto";
+    }else if($mes==9){
+        return "Septiembre";
+    }else if($mes==10){
+        return "Octubre";
+    }else if($mes==11){
+        return "Noviembre";
+    }else if($mes==12){
+        return "Diciembre";
+    }else{
+
+    }
+}
+
 ?>
-<hr></hr>
-<div class="container" style="background-color:; ">
+<hr>
+</hr>
+<div class="container" style="margin-top:5%; ">
     <div class="row" style="width:50%;margin-left:25%;">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -33,24 +69,32 @@ include('./includes/driverdb.php');
 
     <div class="row featurette">
         <div class="col-md-7">
-            <h2 class="featurette-heading"><?php echo $row['Fecha']?> <span
-                    class="text-muted"><?php echo $row['Titulo']?></span></h2>
+            <h2 class="featurette-heading">
+               <?php echo desglosarFecha($row['Fecha'])?> <span class="text-muted"><?php echo $row['Titulo']?></span>
+            </h2>
             <p class="lead"><?php echo $row['Contenido']?></p>
         </div>
         <div class="col-md-5">
-            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500"
-                height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500"
-                preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#eee" /><text x="50%" y="50%" fill="#aaa"
-                    dy=".3em">500x500</text>
-            </svg>
-
+            <?php if($row['Extension']=='jpg'||$row['Extension']=='png'){
+                        $img="<img width='320 heigth=240'src='".$row['Archivo']."'>";
+                        echo $img;
+                         
+        }elseif($row['Extension']=='mp4'){
+                    $video="<video width='320 heigth=240'><source src='".$row['Archivo']."' type='video/mp4'><source src='".$row['Archivo']."' type='video/ogg'>Su explorador no soporta video</video>";
+                    echo $video;
+        }elseif($row['Extension']=='vacio'){
+                        //no hay contenido
+                }else{
+                    $img="<img width='320 heigth=240' src='https://cdn.pixabay.com/photo/2017/02/12/21/29/false-2061132_640.png'>";
+                    echo $img;
+                          
+            }?>
         </div>
     </div>
-    <hr class="featurette-divider mb-1">
+    <hr class="featurette-divider mb-1" style="margin-top:5%">
 </div>
 <?php }?>
+
 
 <?php //include('./includes/wallet.php'); ?>
 <?php include('./includes/footer.php'); ?>
